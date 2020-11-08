@@ -1,9 +1,6 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -15,6 +12,8 @@ public class Address {
     private String streetName;
     private int houseNo;
     private String postalCode;
+    @ManyToOne
+    private Person person;
 
     public Address() {
     }
