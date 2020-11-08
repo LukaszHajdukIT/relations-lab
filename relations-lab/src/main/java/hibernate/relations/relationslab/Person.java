@@ -1,9 +1,8 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Person {
@@ -15,11 +14,15 @@ public class Person {
     private String lastName;
     private String pesel;
     private int age;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Address> address;
+
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String pesel, int age) {
+    public Person(String firstName, String lastName, String pesel, int age, List<Address> address) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
@@ -56,5 +59,33 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", age=" + age +
+                ", address=" + address +
+                '}';
     }
 }

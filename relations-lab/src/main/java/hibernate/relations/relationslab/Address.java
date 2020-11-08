@@ -12,8 +12,6 @@ public class Address {
     private String streetName;
     private int houseNo;
     private String postalCode;
-    @ManyToOne
-    private Person person;
 
     public Address() {
     }
@@ -55,5 +53,24 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", houseNo=" + houseNo +
+                ", postalCode='" + postalCode + '\'' +
+                '}';
     }
 }
