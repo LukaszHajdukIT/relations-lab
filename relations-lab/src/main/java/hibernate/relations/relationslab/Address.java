@@ -1,9 +1,6 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -15,15 +12,18 @@ public class Address {
     private String streetName;
     private int houseNo;
     private String postalCode;
+    @ManyToOne
+    private Person person;
 
     public Address() {
     }
 
-    public Address(String city, String streetName, int houseNo, String postalCode) {
+    public Address(String city, String streetName, int houseNo, String postalCode, Person person) {
         this.city = city;
         this.streetName = streetName;
         this.houseNo = houseNo;
         this.postalCode = postalCode;
+        this.person = person;
     }
 
     public String getCity() {
@@ -56,5 +56,33 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", houseNo=" + houseNo +
+                ", postalCode='" + postalCode + '\'' +
+                ", person=" + person +
+                '}';
     }
 }
