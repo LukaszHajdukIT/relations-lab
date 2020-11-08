@@ -1,9 +1,6 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -56,5 +53,16 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", houseNo=" + houseNo +
+                ", postalCode='" + postalCode + '\'' +
+                '}';
     }
 }

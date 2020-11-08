@@ -1,9 +1,6 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Person {
@@ -15,15 +12,18 @@ public class Person {
     private String lastName;
     private String pesel;
     private int age;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String pesel, int age) {
+    public Person(String firstName, String lastName, String pesel, int age, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pesel = pesel;
         this.age = age;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -56,5 +56,17 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", age=" + age +
+                ", address=" + address +
+                '}';
     }
 }
