@@ -1,9 +1,8 @@
 package hibernate.relations.relationslab;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -15,6 +14,8 @@ public class Address {
     private String streetName;
     private int houseNo;
     private String postalCode;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    Set<Person> persons = new HashSet<>();
 
     public Address() {
     }
@@ -24,6 +25,22 @@ public class Address {
         this.streetName = streetName;
         this.houseNo = houseNo;
         this.postalCode = postalCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
     }
 
     public String getCity() {
@@ -56,5 +73,17 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", houseNo=" + houseNo +
+                ", postalCode='" + postalCode + '\'' +
+                ", persons=" + persons.size() +
+                '}';
     }
 }
