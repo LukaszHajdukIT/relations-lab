@@ -51,4 +51,12 @@ class Relation2Test {
         // Then
         System.out.println("result" + result);
     }
+
+    @Test
+    public void shouldCheckIfAddressForPersonsIsNotNull() {
+        // When
+        List<Person> persons = personRepository.findAll();
+        // Then
+        persons.forEach(person -> assertThat(person.getAddress()).isNotNull());
+    }
 }
